@@ -1,5 +1,7 @@
 import profile from "./assets/profile.jpg";
 import UserGrid from "./components/UserGrid";
+import { useState } from "react";
+import SelectedProfile from "./components/SelectedProfile";
 
 function App() {
   const users = [
@@ -135,9 +137,18 @@ function App() {
     },
   ];
 
+  const [selectedUser, setSelectedUser] = useState(null);
+
+  const viewProfile = (user) => setSelectedUser(user);
+
   return (
     <div className="flex items-center justify-center font-inter min-h-screen bg-slate-200 px-4 py-8">
-      <UserGrid users={users} />
+      <UserGrid users={users} viewProfile={viewProfile} />
+
+      <SelectedProfile
+        user={selectedUser}
+        onClose={() => setSelectedUser(null)}
+      />
     </div>
   );
 }

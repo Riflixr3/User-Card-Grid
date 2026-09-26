@@ -4,7 +4,7 @@ import Button from "./Button";
 import SocialLinks from "./SocialLinks";
 import StatusBadge from "./StatusBadge";
 
-const ProfileCard = ({ user }) => {
+const ProfileCard = ({ user, viewProfile }) => {
   return (
     <div className="flex flex-col items-center justify-center w-full max-w-sm rounded-2xl bg-white p-8 shadow-lg shadow-slate-300/50">
       <div className="flex flex-col items-center gap-2">
@@ -12,11 +12,15 @@ const ProfileCard = ({ user }) => {
         <StatusBadge status={user.status} />
       </div>
 
-      <ProfileInfo name={user.name} role={user.role} bio={user.bio} />
+      <ProfileInfo
+        name={user.name}
+        role={user.role}
+        bio={user.bio}
+      />
 
       <SocialLinks socials={user.socials} />
 
-      <Button />
+      <Button viewProfile={() => viewProfile(user)} />
     </div>
   );
 };
